@@ -30,7 +30,7 @@
 	 			e.dataTransfer.setData("text/plain",this.id);
 	 		});
 	 	});
-	 }
+	}
 
 		dropZones.forEach(zone => {
 			zone.addEventListener("dragover", function(e) {
@@ -52,10 +52,22 @@
 	function resetPuzzlePieces(){
 		// debugger;
 		piecesBoard.innerHTML = "";
+		// dropZones.forEach.innerHTML = "";
 		createPuzzlepieces(this.dataset.puzzleref)
-	}
 
-	puzzleSelectors.forEach(puzzle => puzzle.addEventListener("click", resetPuzzlePieces));
+		dropZones.forEach(zone => {
 
+	zone.innerHTML = "";
+	console.log("clearing dropzones");
+        });
+    }
+    puzzleSelectors.forEach(puzzle => puzzle.addEventListener("click", resetPuzzlePieces));
 	createPuzzlepieces(0);
-})();
+
+        })();
+
+
+
+    
+
+
