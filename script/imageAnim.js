@@ -30,7 +30,7 @@
 	 			e.dataTransfer.setData("text/plain",this.id);
 	 		});
 	 	});
-	 }
+	}
 
 		dropZones.forEach(zone => {
 			zone.addEventListener("dragover", function(e) {
@@ -42,20 +42,38 @@
 				e.preventDefault();
 				console.log("you dropped something on me!");
 
-				let piece = e.dataTransfer.getData("text/plain");
-				e.target.appendChild(document.querySelector(`#${piece}`));			
-			});
-		});
+                let piece = e.dataTransfer.getData("text/plain");
 
+				//if the dropzone has any childern the function will return 
+					if(!zone.innerHTML) {
+						e.target.appendChild(document.querySelector(`#${piece}`));	
+                        console.log('the dropzone is empty, drop something!')
+					} else {
+						return;
+					}
+				})		
+			});
 	
+
 
 	function resetPuzzlePieces(){
 		// debugger;
 		piecesBoard.innerHTML = "";
 		createPuzzlepieces(this.dataset.puzzleref)
-	}
 
-	puzzleSelectors.forEach(puzzle => puzzle.addEventListener("click", resetPuzzlePieces));
-
+		dropZones.forEach(zone => {
+    // clearing dropzone on reset
+	zone.innerHTML = "";
+	console.log("clearing dropzones");
+        });
+    }
+    puzzleSelectors.forEach(puzzle => puzzle.addEventListener("click", resetPuzzlePieces));
 	createPuzzlepieces(0);
-})();
+
+        })();
+
+
+
+    
+
+
