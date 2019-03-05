@@ -42,21 +42,27 @@
 				e.preventDefault();
 				console.log("you dropped something on me!");
 
-				let piece = e.dataTransfer.getData("text/plain");
-				e.target.appendChild(document.querySelector(`#${piece}`));			
-			});
-		});
+                let piece = e.dataTransfer.getData("text/plain");
 
+				//if the dropzone has any childern the function will return 
+					if(!zone.innerHTML) {
+						e.target.appendChild(document.querySelector(`#${piece}`));	
+                        console.log('the dropzone is empty, drop something!')
+					} else {
+						return;
+					}
+				})		
+			});
 	
+
 
 	function resetPuzzlePieces(){
 		// debugger;
 		piecesBoard.innerHTML = "";
-		// dropZones.forEach.innerHTML = "";
 		createPuzzlepieces(this.dataset.puzzleref)
 
 		dropZones.forEach(zone => {
-
+    // clearing dropzone on reset
 	zone.innerHTML = "";
 	console.log("clearing dropzones");
         });
